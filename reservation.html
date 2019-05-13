@@ -1,0 +1,80 @@
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reservations Page</title>
+
+  <!-- **************Bootstrap Links************** -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+  <!-- AJAX library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome Link -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" >
+  <!-- *********************************************************************************** -->
+
+  <link rel="stylesheet" href="assets/css/style.css" >
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+</head>
+<body>
+
+
+  <div class="jumbotron text-center">
+    <h1 class = "">Hot Restaurant</h1>
+    <h3 class = "">Make a Reservation</h3>
+    <hr>
+    <a href="/reservation"><button class="btn btn-danger btn-lg"><span class="fa fa-plus "></span> Make Reservation</button></a>
+
+    <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-plus "></span> View Current List</button></a>
+    <a href="/newsletter"><button class="btn btn-danger btn-lg"><span class="fa fa-plus "></span> Newsletter</button></a>
+
+  </div>
+
+<br>
+
+<div class="container">
+</div>
+
+<br>
+
+<div class="container">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">Reservations</div>
+        <div class="card-body">
+          <form role="form">
+            <div class="form-group">
+              <label for="name-input">Name:</label>
+              <input class="form-control" id="name-input" type="text">
+            </div>
+            <div class="form-group">
+              <label for="destination-input">Phone Number</label>
+              <input class="form-control" id="phone-input" type="text">
+            </div>
+            <div class="form-group">
+              <label for="time-input">Email</label>
+              <input class="form-control" id="email-input" type="text">
+            </div>
+            <div class="form-group">
+              <label for="frequency-input">Unique ID </label>
+              <input class="form-control" id="unique-input" type="number">
+            </div>
+            <button class="btn btn-primary" id="add-user" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
