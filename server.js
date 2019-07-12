@@ -1,97 +1,39 @@
-// GLOBAL VARIABLES
-//======================================================
-  
-  const express = require('express');
-  const app = express();
-  const port = process.env.PORT ||  3000;
-  const path = require("path");
-  const axios = require('axios');
+// ==============================================================================
+// DEPENDENCIES
+// Series of npm packages that we will use to give our server useful functionality
+// ==============================================================================
 
-//======================================================
+var express = require("express");
 
+// ==============================================================================
+// EXPRESS CONFIGURATION
+// This sets up the basic properties for our express server
+// ==============================================================================
 
-// ROUTING
-//======================================================
-  
-  app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "home.html"));
-  });
+// Tells node that we are creating an "express" server
+var app = express();
 
+// Sets an initial port. We"ll use this later in our listener
+var PORT = process.env.PORT || 8080;
 
-  app.get("/newsletter", function(req, res) {
-      res.sendFile(path.join(__dirname, "newsletter.html"));
-    });
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-  app.get("/reservation", function(req, res) {
-    res.sendFile(path.join(__dirname, "reservation.html"));
-  });
+// ================================================================================
+// ROUTER
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
 
-  app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
-  });
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+// =============================================================================
+// LISTENER
+// The below code effectively "starts" our server
+// =============================================================================
 
-
-
-  // Starts the server to begin listening
-  app.listen(port, function() {
-    console.log("App listening on http://localhost:" + port);
-  });
-//======================================================
-
-let currentRes = [
-    {
-        routeName: 'user',
-        userName: 'Brent Abruzese',
-        phone: '848-213-2522',
-        email: 'brent.abruzese@gmail.com',
-        id: 438534
-    }
-]
-
-let waitingList = [
-    {
-        routeName: 'user',
-        userName: 'Som Ramnani',
-        phone: '800-555-1212',
-        email: 'som@som.com',
-        id: 483984
-    }
-]
-
-// app.get("/reservation/:reservation", function(req, res) {
-//   let reservation = req.params.reservation;
-
-//   console.log(reservation);
-
-
-//   for (var i = 0; i < currentRes.length; i++) {
-//     if (reservation === currentRes[i].routeName) {
-//       return res.json(reservation[i]);
-//     }
-//   }
-//   return res.json(false);
-// });
-
-//display all CURRENT reservations
-app.get("/tables", function(req, res) {
-  return res.json(currentRes);
-
-});
-
-//create NEW reservations
-app.post("/reservation", function(req, res) {
-  let reservation = req.body;
-  console.log(reservation);
-  reservation.routeName = reservation.userName.replace(/\s+/g, "").toLowerCase();
-  
-  if (currentRes.length < 5) {
-    currentRes.push(reservation);
-  } else {
-    waitingList.push(reservation);
-  }
-
-  res.json(reservation);
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
 });
