@@ -1,30 +1,42 @@
 // ===============================================================================
 // DEPENDENCIES
-// We need to include the path package to get the correct file path for our html
 // ===============================================================================
-var path = require("path");
+    // We need to include the path package to get the correct file path for our html
+    var path = require("path");
+// ===============================================================================
 
 
 // ===============================================================================
 // ROUTING
 // ===============================================================================
+    module.exports = function(app) {
+      //tables.html Route
+      app.get("/tables", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/tables.html"));
+      });
 
-module.exports = function(app) {
-  // HTML GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases the user is shown an HTML page of content
-  // ---------------------------------------------------------------------------
+      // reserve.html Route
+      app.get("/reserve", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/reserve.html"));
+      });
 
-  app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/tables.html"));
-  });
+      // If no matching route is found default to home
+      app.get("*", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/home.html"));
+      });
 
-  app.get("/reserve", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/reserve.html"));
-  });
+      // Stylesheet Route
+      app.get("/styles", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/css/style.css"));     
+      });
 
-  // If no matching route is found default to home
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
-  });
-};
+      //Home page picture Route
+      app.get("/homepage-picture", function(req,res){
+        res.sendFile(path.join(__dirname, "../public/images/patrick-tomasso-NlcCPeKNmwg-unsplash.jpg"))
+      })
+
+
+      
+
+  };
+// ===============================================================================

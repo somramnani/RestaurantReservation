@@ -1,6 +1,6 @@
 .background-image{
    
-  background-image: url("../images/patrick-tomasso-NlcCPeKNmwg-unsplash.jpg");
+  background-image: url("/homepage-picture");
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   height: 100vh;
@@ -8,4 +8,8 @@
   background-position: center;
  opacity: 1;
 
+}
+
+h1{
+  font-size: 20em;
 }
